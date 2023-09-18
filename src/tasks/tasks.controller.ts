@@ -1,6 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { CreateTaskDTO, DeleteTaskDTO } from './dto/task.dto';
+import { CreateTaskDTO, DeleteTaskDTO, UpdateTask } from './dto/task.dto';
 
 @Controller('tasks')
 export class TasksController {
@@ -83,4 +91,38 @@ export class TasksController {
       return this.errors;
     }
   }
+
+  @Put(':id')
+  updateTask(@Param() newTask: any){
+    
+  }
+
 }
+
+  /* @Put(':id')
+  updateTask(@Param() @Body() newTask: UpdateTask) {
+    try {
+      if (!newTask.title && !newTask.description && !newTask.status){
+        this.errors.message = "Required fild empty";
+        this.errors.code = 404;
+
+        return this.errors
+      }else{
+          this.succes.body = this.taskService.updateTask(
+            newTask.id,
+            newTask.title,
+            newTask.description,
+            newTask.status,
+          );
+  
+        this.succes.code = 200;
+  
+        return this.succes;
+      }
+    } catch (error) {
+      this.errors.body = error.message;
+      this.errors.code = error.code;
+
+      return this.errors;
+    }
+  } */

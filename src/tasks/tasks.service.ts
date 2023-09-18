@@ -46,8 +46,9 @@ export class TasksService {
     }
 
     getTaskById(id: string): Task{
-        const index = this.tasks.findIndex((product) => product.id === id)
-        return this.tasks[index];
+        /* const index = this.tasks.findIndex((product) => product.id === id)
+        return this.tasks[index]; */
+        return this.tasks.find((task) => task.id === id)
     }
 
     createTask(title: string, description: string){
@@ -61,9 +62,25 @@ export class TasksService {
         this.tasks.push(task);
         return JSON.stringify(task);
     }
-    updateTask(id: string){
+    /* updateTask(id: string, title : string, description : string, status: TaskStatus){
+        const index = this.tasks.findIndex((product) => product.id === id)
 
+        this.tasks[index] = {
+            id: id,
+            title: title,
+            description: description,
+            status:status
+        }
+        
+        return this.tasks[index];
+    } */
+
+    updateTask(id: string, updateFields: any){
+        const task = this.getTaskById(id);
+        const newTask = Object.assign(task, updateFields)
+        this.tasks = this.tasks.map((task) => task.id === id? newTask : task)
     }
+
     deleteTask(id: string) : Task {
         const index = this.tasks.findIndex((product) => product.id === id)
         const taskDelete = this.tasks[index];
