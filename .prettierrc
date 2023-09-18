@@ -1,0 +1,11 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": true,
+  "arrowParens": "always",
+  "brace-style": "stroustrup", 
+  "space-in-braces": "always",
+  "space-before-function-paren": "always",
+  "space-after-function-paren": "always",
+  "space-infix-ops": "always"
+}
